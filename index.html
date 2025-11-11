@@ -16,13 +16,13 @@
     }
 
     body {
-      background: linear-gradient(135deg, #0f172a, #0ea5e9);
-      color: #f8fafc;
+      background: linear-gradient(135deg, #0b1120, #1e3a8a 60%, #22d3ee 100%);
+      color: #e2e8f0;
       scroll-behavior: smooth;
     }
 
     header {
-      background-color: rgba(15, 23, 42, 0.9);
+      background-color: rgba(11, 17, 32, 0.85);
       padding: 1.5rem 2rem;
       display: flex;
       justify-content: space-between;
@@ -30,16 +30,17 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
 
     header h1 {
-      font-size: 1.5rem;
-      color: #38bdf8;
+      font-size: 1.6rem;
+      color: #22d3ee;
     }
 
     nav a {
-      color: #f1f5f9;
+      color: #e2e8f0;
       margin-left: 1.5rem;
       text-decoration: none;
       font-weight: 600;
@@ -47,7 +48,7 @@
     }
 
     nav a:hover {
-      color: #0ea5e9;
+      color: #38bdf8;
       transform: rotate(-5deg) scale(1.1);
     }
 
@@ -82,13 +83,13 @@
 
     .hero img:hover {
       transform: scale(1.1) rotate(5deg);
-      box-shadow: 0 0 20px #38bdf8;
+      box-shadow: 0 0 25px #38bdf8;
     }
 
     .hero h2 {
       font-size: 2.2rem;
       margin-bottom: 0.5rem;
-      color: #e0f2fe;
+      color: #e2e8f0;
     }
 
     .hero p {
@@ -101,16 +102,17 @@
       margin-top: 1.5rem;
       padding: 0.75rem 1.5rem;
       background-color: #38bdf8;
-      color: #0f172a;
-      border-radius: 8px;
+      color: #0b1120;
+      border-radius: 10px;
       font-weight: bold;
       text-decoration: none;
-      transition: transform 0.3s ease, background 0.3s ease;
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
     }
 
     .btn:hover {
-      background-color: #0ea5e9;
+      background-color: #22d3ee;
       transform: scale(1.1) rotate(-3deg);
+      box-shadow: 0 5px 20px rgba(34, 211, 238, 0.6);
     }
 
     .gustos-lista, .contactos-lista {
@@ -123,17 +125,18 @@
     }
 
     .gustos-lista li, .contactos-lista li {
-      background-color: rgba(15, 23, 42, 0.8);
+      background-color: rgba(11, 17, 32, 0.85);
       padding: 1rem;
-      border-radius: 12px;
+      border-radius: 15px;
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: default;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.4);
     }
 
     .gustos-lista li:hover, .contactos-lista li:hover {
-      transform: translateY(-5px) scale(1.05) rotate(-1deg);
-      box-shadow: 0 5px 15px rgba(0, 234, 255, 0.5);
+      transform: translateY(-6px) scale(1.05) rotate(-1deg);
+      box-shadow: 0 8px 20px rgba(34, 211, 238, 0.5);
     }
 
     .contactos-lista a {
@@ -141,20 +144,22 @@
       text-decoration: none;
       font-weight: bold;
       display: inline-block;
-      transition: transform 0.3s ease, color 0.3s ease;
+      transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
     }
 
     .contactos-lista a:hover {
-      color: #0ea5e9;
+      color: #22d3ee;
       transform: scale(1.1) rotate(5deg);
+      text-shadow: 0 0 10px #22d3ee;
     }
 
     footer {
       text-align: center;
       padding: 2rem;
-      background-color: rgba(15, 23, 42, 0.9);
+      background-color: rgba(11, 17, 32, 0.85);
       color: #94a3b8;
       backdrop-filter: blur(5px);
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.5);
     }
 
     footer a {
@@ -245,5 +250,3 @@
   </script>
 </body>
 </html>
-
-
