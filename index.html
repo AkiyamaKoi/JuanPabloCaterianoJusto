@@ -9,7 +9,6 @@
   <title>Juan Pablo Cateriano — Portafolio</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
-
   <style>
     :root {
       --bg1: #070811;
@@ -46,10 +45,111 @@
       z-index: 0;
     }
 
+    /* Animación de fondo neón flotante */
+    .floating-neon {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .neon-shape {
+      position: absolute;
+      border: 2px solid;
+      border-radius: 10px;
+      opacity: 0.15;
+      filter: blur(1px);
+      animation: float 20s infinite linear;
+    }
+
+    .neon-shape:nth-child(1) {
+      width: 120px;
+      height: 120px;
+      top: 10%;
+      left: 5%;
+      border-color: #22d3ee;
+      box-shadow: 0 0 15px #22d3ee;
+      animation-delay: 0s;
+    }
+
+    .neon-shape:nth-child(2) {
+      width: 80px;
+      height: 80px;
+      top: 70%;
+      left: 10%;
+      border-color: #7c3aed;
+      box-shadow: 0 0 15px #7c3aed;
+      animation-delay: -5s;
+    }
+
+    .neon-shape:nth-child(3) {
+      width: 150px;
+      height: 150px;
+      top: 20%;
+      right: 5%;
+      border-color: #22d3ee;
+      box-shadow: 0 0 15px #22d3ee;
+      animation-delay: -10s;
+    }
+
+    .neon-shape:nth-child(4) {
+      width: 100px;
+      height: 100px;
+      top: 60%;
+      right: 10%;
+      border-color: #7c3aed;
+      box-shadow: 0 0 15px #7c3aed;
+      animation-delay: -15s;
+    }
+
+    .neon-shape:nth-child(5) {
+      width: 90px;
+      height: 90px;
+      top: 40%;
+      left: 20%;
+      border-color: #22d3ee;
+      box-shadow: 0 0 15px #22d3ee;
+      animation-delay: -7s;
+    }
+
+    .neon-shape:nth-child(6) {
+      width: 130px;
+      height: 130px;
+      top: 50%;
+      right: 20%;
+      border-color: #7c3aed;
+      box-shadow: 0 0 15px #7c3aed;
+      animation-delay: -12s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(20px, 30px) rotate(90deg);
+      }
+      50% {
+        transform: translate(0, 60px) rotate(180deg);
+      }
+      75% {
+        transform: translate(-20px, 30px) rotate(270deg);
+      }
+    }
+
     @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     header {
@@ -194,6 +294,9 @@
       .hero h2 {
         font-size: 1.8rem;
       }
+      .neon-shape {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -201,6 +304,16 @@
 <body>
   <!-- Canvas para partículas -->
   <canvas id="particles"></canvas>
+
+  <!-- Fondo neón flotante -->
+  <div class="floating-neon">
+    <div class="neon-shape"></div>
+    <div class="neon-shape"></div>
+    <div class="neon-shape"></div>
+    <div class="neon-shape"></div>
+    <div class="neon-shape"></div>
+    <div class="neon-shape"></div>
+  </div>
 
   <header>
     <h1>Juan Pablo Cateriano</h1>
@@ -250,7 +363,7 @@
   </section>
 
   <!-- Lista completa de compañeros -->
- <section id="companeros">
+  <section id="companeros">
     <h2>Compañeros</h2>
     <ul class="grid">
       <li><a href="https://marializcadenashullicapacco.github.io/pagina-web/" target="_blank">Marialit Caderas Multiaparco</a><br><a href="https://www.linkedin.com/in/marializcadenashullicapacco/" target="_blank">LinkedIn</a></li>
@@ -280,7 +393,7 @@
       <li><a href="https://selenaccallomamani.github.io/selena.ccallomamani.github.io/" target="_blank">Selena Goldmannani Haumanzhulu</a><br><a href="https://www.linkedin.com/in/selena-ccallomamani-huaman%C3%B1ahui-6b0364311" target="_blank">LinkedIn</a></li>
     </ul>
   </section>
-      <!-- Pega aquí tu lista completa de compañeros (la que me pasaste) -->
+
   <section id="profesores">
     <h2>Profesores</h2>
     <ul class="grid">
@@ -296,72 +409,98 @@
   </section>
 
   <footer>
-    <p>© 2025 Juan Pablo Cateriano — “Si lo puedes imaginar, lo puedes programar.”</p>
+    <p>© 2025 Juan Pablo Cateriano — "Si lo puedes imaginar, lo puedes programar."</p>
   </footer>
 
   <script>
-    // Partículas animadas
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    let w = canvas.width = window.innerWidth;
-    let h = canvas.height = window.innerHeight;
+    // --- CONFIGURACIÓN DEL CANVAS ---
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
 
-    window.addEventListener('resize', () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-    });
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
-    const particlesArray = [];
-    const colors = ['#22d3ee', '#7c3aed', '#ffffff'];
+    // --- PARTÍCULAS ---
+    const particles = [];
+    const PARTICLE_COUNT = 80;
+    const MAX_DISTANCE = 130;
 
-    class Particle {
-      constructor() {
-        this.x = Math.random() * w;
-        this.y = Math.random() * h;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.7;
-        this.speedY = (Math.random() - 0.5) * 0.7;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > w) this.speedX *= -1;
-        if (this.y < 0 || this.y > h) this.speedY *= -1;
-      }
-      draw() {
-        ctx.fillStyle = this.color;
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 1.2,
+        speedX: (Math.random() - 0.5) * 0.4,
+        speedY: (Math.random() - 0.5) * 0.4,
+        hueShift: Math.random() * 360 // Cada partícula inicia en un tono distinto
+      });
+    }
+
+    // --- ANIMACIÓN ---
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p, i) => {
+        // Movimiento
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        // Bordes
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        // Cambio de color suave entre cian ↔ púrpura
+        // Cian = 180°, Púrpura = 290°
+        p.hueShift += 0.3; 
+        const hue = 180 + Math.sin(p.hueShift * 0.02) * 55;
+
+        ctx.fillStyle = `hsla(${hue}, 90%, 70%, 0.9)`;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
-      }
-    }
 
-    function initParticles(num = 120) {
-      for (let i = 0; i < num; i++) {
-        particlesArray.push(new Particle());
-      }
-    }
+        // Líneas entre partículas cercanas ("web de luz")
+        for (let j = i + 1; j < particles.length; j++) {
+          let p2 = particles[j];
+          const dx = p.x + -p2.x;
+          const dy = p.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
 
-    function animate() {
-      ctx.clearRect(0, 0, w, h);
-      particlesArray.forEach(p => {
-        p.update();
-        p.draw();
+          if (dist < MAX_DISTANCE) {
+            let opacity = 1 - dist / MAX_DISTANCE;
+            ctx.strokeStyle = `hsla(${hue}, 90%, 65%, ${opacity * 0.5})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
       });
-      requestAnimationFrame(animate);
+
+      requestAnimationFrame(animateParticles);
     }
+    animateParticles();
 
-    initParticles();
-    animate();
+    // --- ANIMACIÓN DE APARICIÓN AL SCROLL ---
+    const sections = document.querySelectorAll("section");
 
-    // Animación de secciones al hacer scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
+    function checkVisible() {
+      const trigger = window.innerHeight * 0.85;
+
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < trigger) sec.classList.add("visible");
       });
-    }, { threshold: 0.22 });
-    document.querySelectorAll("section").forEach(s => observer.observe(s));
+    }
+    window.addEventListener("scroll", checkVisible);
+    checkVisible();
   </script>
 </body>
 </html>
