@@ -9,12 +9,10 @@
   
   <title>Juan Pablo Cateriano — Portafolio</title>
 
-  <!-- Preload de fuente -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
 
   <style>
-    /* ----------------------------- VARIABLES ----------------------------- */
     :root {
       --bg1: #070811;
       --bg2: #2c0263;
@@ -23,169 +21,47 @@
       --shadow: rgba(124, 58, 237, 0.4);
     }
 
-    /* ----------------------------- RESET ----------------------------- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:"Poppins", sans-serif;}
+    body { background:linear-gradient(135deg,var(--bg1),var(--bg2) 70%); color:var(--cyan); scroll-behavior:smooth; line-height:1.6;}
 
-    body {
-      background: linear-gradient(135deg, var(--bg1), var(--bg2) 70%);
-      color: var(--cyan);
-      scroll-behavior: smooth;
-      line-height: 1.6;
-    }
+    /* HEADER */
+    header { background-color: rgba(7,8,17,0.9); padding:1.5rem 2rem; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:1000; backdrop-filter: blur(6px); box-shadow:0 4px 15px rgba(0,0,0,0.6);}
+    header h1 { font-size:1.7rem; color:var(--purple); font-weight:600; letter-spacing:0.5px;}
+    nav a { color:var(--cyan); margin-left:1.5rem; text-decoration:none; font-weight:600; transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;}
+    nav a:hover { color:var(--purple); transform: rotate(-3deg) scale(1.08); text-shadow:0 0 10px var(--purple); }
 
-    /* ----------------------------- HEADER ----------------------------- */
-    header {
-      background-color: rgba(7, 8, 17, 0.9);
-      padding: 1.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-    }
+    /* SECCIONES */
+    section { padding:4rem 2rem; max-width:1000px; margin:auto; opacity:0; transform: translateY(30px); transition: all 1s ease;}
+    section.visible { opacity:1; transform:translateY(0); }
 
-    header h1 {
-      font-size: 1.7rem;
-      color: var(--purple);
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
+    h2 { font-size:2rem; margin-bottom:1rem; color:var(--purple); opacity:0; transform: translateY(20px); transition: all 1s ease; }
+    h2.visible { opacity:1; transform:translateY(0); animation: glow 2s infinite alternate; }
+    @keyframes glow { 0%{ text-shadow:0 0 2px var(--purple);} 50%{ text-shadow:0 0 15px var(--purple);} 100%{ text-shadow:0 0 2px var(--purple);} }
 
-    nav a {
-      color: var(--cyan);
-      margin-left: 1.5rem;
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
-    }
+    /* HERO */
+    .hero { text-align:center; padding-top:5rem; }
+    .hero img { width:160px; height:160px; border-radius:50%; object-fit:cover; border:4px solid var(--purple); margin-bottom:1rem; transition: transform 0.5s ease, box-shadow 0.5s ease; animation: heroBounce 1s ease forwards;}
+    .hero img:hover { transform: scale(1.15) rotate(5deg); box-shadow: 0 0 28px var(--purple); }
+    @keyframes heroBounce { 0%{transform:translateY(-50px) scale(0.8);} 60%{transform:translateY(10px) scale(1.05);} 100%{transform:translateY(0) scale(1);} }
 
-    nav a:hover {
-      color: var(--purple);
-      transform: rotate(-3deg) scale(1.08);
-      text-shadow: 0 0 10px var(--purple);
-    }
+    .hero h2 { animation: heroText 1s ease forwards; }
+    @keyframes heroText { 0%{opacity:0; transform:translateY(-20px);} 100%{opacity:1; transform:translateY(0);} }
 
-    /* ----------------------------- SECCIONES ----------------------------- */
-    section {
-      padding: 4rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 1s ease;
-    }
+    /* GRID / TARJETAS */
+    .grid { margin-top:1.5rem; list-style:none; display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .grid li { background-color: rgba(7,8,17,0.85); padding:1rem; border-radius:15px; text-align:center; box-shadow:0 3px 12px rgba(0,0,0,0.5); transition:0.3s ease; perspective:1000px; }
+    .grid li:hover { transform: translateY(-10px) scale(1.05) rotateY(5deg) rotateX(2deg); box-shadow: 0 12px 28px var(--shadow); animation: pulse 1.5s infinite alternate; cursor:pointer;}
+    @keyframes pulse { 0%{ box-shadow:0 12px 28px var(--shadow);} 100%{ box-shadow:0 18px 35px var(--shadow);} }
 
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .grid a { color: var(--cyan); text-decoration:none; font-weight:bold; transition:0.3s ease; display:inline-block; }
+    .grid a:hover { color: var(--purple); transform: scale(1.1) rotate(5deg); text-shadow:0 0 10px var(--purple); }
 
-    /* ----------------------------- HERO ----------------------------- */
-    .hero {
-      text-align: center;
-      padding-top: 5rem;
-    }
+    /* FOOTER */
+    footer { text-align:center; padding:2rem; background-color: rgba(7,8,17,0.9); box-shadow:0 -4px 12px rgba(0,0,0,0.6); }
+    footer p { opacity:0.85; }
 
-    .hero img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--purple);
-      margin-bottom: 1rem;
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-    }
-
-    .hero img:hover {
-      transform: scale(1.15) rotate(5deg);
-      box-shadow: 0 0 28px var(--purple);
-    }
-
-    .hero h2 {
-      font-size: 2.3rem;
-      margin-bottom: 0.7rem;
-      color: var(--purple);
-    }
-
-    .hero p {
-      font-size: 1.15rem;
-      opacity: 0.9;
-    }
-
-    /* ----------------------------- LISTAS ----------------------------- */
-    .grid {
-      margin-top: 1.5rem;
-      list-style: none;
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-
-    .grid li {
-      background-color: rgba(7,8,17,0.85);
-      padding: 1rem;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.5);
-      transition: 0.4s ease;
-    }
-
-    .grid li:hover {
-      transform: translateY(-8px) scale(1.05) rotateX(3deg) rotateY(2deg);
-      box-shadow: 0 12px 28px var(--shadow);
-    }
-
-    .grid a {
-      color: var(--cyan);
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s ease;
-      display: inline-block;
-      margin-top: 0.2rem;
-    }
-
-    .grid a:hover {
-      color: var(--purple);
-      transform: scale(1.1) rotate(5deg);
-      text-shadow: 0 0 10px var(--purple);
-    }
-
-    /* ----------------------------- FOOTER ----------------------------- */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background-color: rgba(7, 8, 17, 0.9);
-      box-shadow: 0 -4px 12px rgba(0,0,0,0.6);
-    }
-
-    footer p {
-      opacity: 0.85;
-    }
-
-    /* ----------------------------- RESPONSIVE ----------------------------- */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-      }
-
-      nav a {
-        margin: 0 0.7rem;
-      }
-
-      .hero h2 {
-        font-size: 1.8rem;
-      }
-    }
+    /* RESPONSIVE */
+    @media (max-width:768px) { header { flex-direction:column; gap:1rem; text-align:center; } nav a { margin:0 0.7rem; } .hero h2 { font-size:1.8rem; } }
   </style>
 </head>
 
@@ -197,28 +73,26 @@
       <a href="#gustos">Gustos</a>
       <a href="#contacto">Contacto</a>
       <a href="#red">Red</a>
-      <a href="#companeros">Compañeros</a>
     </nav>
   </header>
 
-  <!-- ----------------------------- HERO ----------------------------- -->
   <section class="hero">
     <img src="perfil.jpg" alt="Foto de Juan Pablo Cateriano">
     <h2>¡Hola! Soy Juan Pablo 👋</h2>
     <p>INTP | Programación, videojuegos indie, historias profundas y música 🎮🎵</p>
   </section>
 
-  <!-- ----------------------------- SOBRE MÍ ----------------------------- -->
   <section id="sobre-mi">
     <h2>Sobre mí</h2>
-    <p>
-      Soy alguien curioso, reflexivo e imaginativo. Combino lo técnico con lo creativo: 
-      programación, diseño de videojuegos, narrativa y música. 
-      Me encantan los proyectos con alma y significado.
-    </p>
+    <p>Soy alguien curioso, reflexivo e imaginativo. Combino lo técnico con lo creativo: programación, diseño de videojuegos, narrativa y música. Me encantan los proyectos con alma y significado.</p>
+    <ul class="grid">
+      <li>Edad: 18 años</li>
+      <li>Formación académica: Estudiante de Ciencias de la Computación - Universidad Católica San Pablo</li>
+      <li>Ocupación: Estudiante</li>
+      <li>Ciudad: Arequipa, Perú</li>
+    </ul>
   </section>
 
-  <!-- ----------------------------- GUSTOS ----------------------------- -->
   <section id="gustos">
     <h2>Mis gustos</h2>
     <ul class="grid">
@@ -230,7 +104,6 @@
     </ul>
   </section>
 
-  <!-- ----------------------------- CONTACTO ----------------------------- -->
   <section id="contacto">
     <h2>Contacto</h2>
     <ul class="grid">
@@ -240,121 +113,74 @@
     </ul>
   </section>
 
-  <!-- ----------------------------- RED ----------------------------- -->
   <section id="red">
     <h2>Red de contactos</h2>
     <ul class="grid">
-      <li><a href="https://linkedin.com/in/ecuadrosv" target="_blank">👨‍🏫 Prof. E. Cuadros</a></li>
+      <li><a href="https://marializcadenashullicapacco.github.io/pagina-web/" target="_blank">Marialit Caderas</a></li>
+      <li><a href="https://traicypacocoolque.github.io/" target="_blank">Tracy Pároz</a></li>
+      <li><a href="https://svr-glitch.github.io/SANTIAGO-VELASCO-RIVERA/" target="_blank">Santiago Jánchez</a></li>
+      <li><a href="https://chaskacandia.github.io/chaskacandiaochoa.github.io/" target="_blank">Chasta Carola Ochoa</a></li>
+      <li><a href="https://deza-ccama.github.io/marilyn-shiomara-deza-ccama/" target="_blank">Marilyn Sivonara</a></li>
+      <li><a href="https://angelabecerra-jpg.github.io/pagina-web/" target="_blank">Angela Becerra</a></li>
+      <li><a href="https://gustavorodriguezrodriguez.github.io/pagina-web/" target="_blank">Guardo Rodrigues</a></li>
+      <li><a href="https://hectorrodriguez17.github.io/mywebhr/" target="_blank">Héctor Rodríguez</a></li>
+      <li><a href="https://greciamunoz-sys.github.io/Grecia-Arianne-Consuelo-Munoz-Ventur" target="_blank">Grecia Muñoz</a></li>
+      <li><a href="https://katerineangelahuaycaniturpo.github.io/pagina-web/" target="_blank">Katrina Fraga</a></li>
+      <li><a href="https://juanquispepandia-code.github.io/" target="_blank">Juan Daniel López-Paneta</a></li>
+      <li><a href="https://cesarluisgonzalesmeneses.github.io/paginaweb/" target="_blank">Coas-Lí del González</a></li>
+      <li><a href="https://santiagovaldiviezo10.github.io/santiagovaldiviezo" target="_blank">Tomi Santiago Valdivisco</a></li>
+      <li><a href="https://valeriegallardo.github.io/valeriegallardo/" target="_blank">Valerio Gallardo</a></li>
+      <li><a href="https://rodrigomolinap.github.io/RodrigoMolinaP-web/" target="_blank">Rodrigo Molina</a></li>
+      <li><a href="https://owenvh.github.io" target="_blank">Diogo Kurt Vidarani</a></li>
+      <li><a href="https://pari-dot.github.io/Mauricio.github.io/" target="_blank">Mauricio Joel Pati Gomez</a></li>
+      <li><a href="https://roaldmacedoboza.github.io/roaldmacedo.github.io" target="_blank">Macedo Rena Roald</a></li>
+      <li><a href="https://flavianicaeladiazzevallos1.github.io/" target="_blank">Flávia Wissada</a></li>
+      <li><a href="https://jorgecastro-sudo.github.io/Jorge-David-castro-quispe-/" target="_blank">Jorge David Castro</a></li>
+      <li><a href="https://josecalizaya-cmyk.github.io/joseluiscalizayachura.github.io/" target="_blank">Leandro Carlos Valdivis Rosa</a></li>
+      <li><a href="https://leaovaldiviarivas.github.io/leandro-carlos-valdivia-rivas/" target="_blank">Afrika Emily Valencia Pinho</a></li>
+      <li><a href="https://arivalencia2025.github.io/Ariana Emily Valencia.github.io/" target="_blank">Solen Goldmannani</a></li>
+      <li><a href="https://cielogrp.github.io/Cielo-Geraldine-Romero-Pe-a/" target="_blank">Selena Goldmannani</a></li>
+      <!-- Profesores -->
+      <li><a href="mailto:jlovonc@ucsp.edu.pe">Jorge Lovón Caparó</a></li>
+      <li><a href="mailto:emgomez@ucsp.edu.pe">Erick Mauricio Gómez Nieto</a></li>
+      <li><a href="mailto:kvizconde@ucsp.edu.pe">Kelly Vizconde La Motta</a></li>
+      <li><a href="mailto:rvquispe@ucsp.edu.pe">Rosmery Violeta Quispe Zavala</a></li>
+      <li><a href="mailto:ppacheco@ucsp.edu.pe">Pierina Pacheco Leyton</a></li>
+      <li><a href="mailto:ecuadros@ucsp.edu.pe">Ernesto Cuadros Vargas</a></li>
+      <li><a href="mailto:ychirinos@ucsp.edu.pe">Yanet Silvana Chirinos Avilés</a></li>
     </ul>
   </section>
 
-  <!-- ----------------------------- COMPAÑEROS ----------------------------- -->
-  <section id="companeros">
-    <h2>Compañeros</h2>
-    <ul class="grid">
-      <li>
-        <a href="https://marialitcaderasintelli.caparco.github.io/parfino/web/" target="_blank">Marialit Caderas Multiaparco — Web</a><br>
-        <a href="https://www.linkedin.com/in/marialitcaderasintelli.caparco/" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://tracyparcocotoa.github.io/" target="_blank">Tracy Pároz Colaga — Web</a><br>
-        <a href="https://www.linkedin.com/n/cnpc-parco-colguec-014895586/" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://tar.github.io/s/NMT400-VL1JXC6-WR4RAV" target="_blank">Santiago Jánchez Rivera — Web</a><br>
-        <a href="https://www.linkedin.com/in/cantrago-vlave-cherca-verza/" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://chastacarola.github.io/chastacarolascoba.github.io/" target="_blank">Chasta Carola Ochoa — Web</a><br>
-        <a href="https://www.linkedin.com/in/chasta-carola-sochoa-277073386/" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://dora-canna.github.io/marilyn-sivonara-dora-canna/" target="_blank">Marilyn Sivonara Dora Canna — Web</a>
-      </li>
-      <li>
-        <a href="https://angolisbecerra.bra.github.io/bartan_web/" target="_blank">Angola Becerra Amado — Web</a><br>
-        <a href="https://www.linkedin.com/in/Angola-becerra-06b5b6345/" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://guizancoirdriguezrrodriguez.github.io/pagina/web/" target="_blank">Guardo Rodrigues Rodriguez — Web</a>
-      </li>
-      <li>
-        <a href="https://hectorrodriguez17.github.io/movedior/" target="_blank">Héctor Ricardo Rodríguez García — Web</a>
-      </li>
-      <li>
-        <a href="https://hectorrodriguez17.github.io/Grecio-Muñoz-Consuelo-Munoz-Warto/" target="_blank">Grecia Consuelo Muñoz — Web</a>
-      </li>
-      <li>
-        <a href="https://hectorrosavabhuancuraturno.github.io/parfina-web/" target="_blank">Katrina Fraga Huancura Turno — Web</a>
-      </li>
-      <li>
-        <a href="https://juanladepaneta.es/o-github.io/" target="_blank">Juan Daniel López-Paneta — Web</a>
-      </li>
-      <li>
-        <a href="https://coas-lídu@academianosex.github.io/baamazeb/" target="_blank">Coas-Lí del González Menezes — Web</a>
-      </li>
-      <li>
-        <a href="https://santiagovaldivisco10.github.io/santiagovaldivisco" target="_blank">Tomi Santiago Valdivisco Guardia — Web</a><br>
-        <a href="https://pe_linkedin.com/in/santiago-valdivisco-labbaa380" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://katriesallardo.github.io/tatriesallardo/" target="_blank">Valerio Gallardo — Web</a>
-      </li>
-      <li>
-        <a href="https://corlegomolina.github.io/Rodrigoldolina3-web/" target="_blank">Rodrigo Molina Portocarrero — Web</a>
-      </li>
-      <li>
-        <a href="https://diogovard.dithub." target="_blank">Diogo Kurt Vidarani Checco — Web</a><br>
-        <a href="https://www.linkedin.com/in/down-hut-vidarani-checca" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://barrizo.abru.edu" target="_blank">Mauricio Joel Pati Gomez — Web</a><br>
-        <a href="https://www.linkedin.com/in/mauricio-joei-pati-gomez-502343580/" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://roaldmacelo.bera.github.io/roaldmacelo.github.io" target="_blank">Macedo Rena Roald — Web</a><br>
-        <a href="https://www.linkedin.com/in/roald-macedo-bora-a456e4388" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://flavieworlddizzavalios13.github.io/" target="_blank">Flávia Wissada Dica Zavalios — Web</a><br>
-        <a href="https://www.linkedin.com/in/flavia-micuelo-qWC3%40ax-zavalios" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://jorgecastro.sudo.github.io/Jorge-David-castro-quique/" target="_blank">Jorge David Castro Quique — Web</a>
-      </li>
-      <li>
-        <a href="https://josecolargy-cervix.github.io/joeviducalizayacir/braz-dithub.io/" target="_blank">Leandro Carlos Valdivis Rosa — Web</a><br>
-        <a href="https://www.linkedin.com/in/jose-luiz-aldair-cultura-chura-806218439/" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://leacoelvibriensa.github.io/leandro-carios-valdivis-rina/" target="_blank">Afrika Emily Valencia Pinho — Web</a><br>
-        <a href="https://www.linkedin.com/in/africa-early-valencia-patvicxW810-bk0135387/" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://soleno.github.io/Cello-Gendimo-Torruno-19_a/" target="_blank">Solen Goldmannani Haumanzhulu — Web</a><br>
-        <a href="https://www.linkedin.com/in/cello-gendimo-89a195492" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://selena.gendmannani.github.io/selena.gendmannani.github.io/" target="_blank">Selena Goldmannani Haumanzhulu — Web</a><br>
-        <a href="https://www.linkedin.com/in/selena-gendmannani-haumanVC3%B1ahul-80050131/" target="_blank">LinkedIn</a>
-      </li>
-    </ul>
-  </section>
-
-  <!-- ----------------------------- FOOTER ----------------------------- -->
   <footer>
     <p>© 2025 Juan Pablo Cateriano — “Si lo puedes imaginar, lo puedes programar.”</p>
   </footer>
 
   <script>
-    // Animación de aparición al hacer scroll
+    // Animación de aparición escalonada
     const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
+      entries.forEach((entry) => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          entry.target.querySelectorAll("li,h2,p,a").forEach((el,i)=>{
+            setTimeout(()=>el.classList.add("visible"), i*150);
+          });
+        }
       });
-    }, { threshold: 0.22 });
-
+    },{threshold:0.2});
     document.querySelectorAll("section").forEach(s => observer.observe(s));
+
+    // Efecto de luz que sigue el mouse sobre tarjetas
+    document.querySelectorAll(".grid li").forEach(card => {
+      card.addEventListener("mousemove", e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(124,58,237,0.25), rgba(7,8,17,0.85))`;
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.background = "rgba(7,8,17,0.85)";
+      });
+    });
   </script>
 </body>
 </html>
