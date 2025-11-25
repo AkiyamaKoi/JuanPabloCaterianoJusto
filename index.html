@@ -1,254 +1,326 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Portafolio de Juan Pablo Cateriano — Programación, videojuegos indie, diseño creativo y más.">
-<meta name="keywords" content="Juan Pablo Cateriano, programación, videojuegos, indie games, portafolio, INTP, desarrollo de juegos, Godot, pixel art">
-<meta name="author" content="Juan Pablo Cateriano">
-<title>Juan Pablo Cateriano — Portafolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portafolio de Juan Pablo Cateriano — Programación, videojuegos indie, diseño creativo y más.">
+  <meta name="keywords" content="Juan Pablo Cateriano, programación, videojuegos, indie games, portafolio, INTP, desarrollo de juegos, Godot, pixel art">
+  <meta name="author" content="Juan Pablo Cateriano">
+  
+  <title>Juan Pablo Cateriano — Portafolio</title>
 
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
 
-<style>
-:root {
-  --bg1: #070811;
-  --bg2: #2c0263;
-  --cyan: #22d3ee;
-  --purple: #7c3aed;
-  --shadow: rgba(124, 58, 237, 0.4);
-  --glow: rgba(34, 211, 238, 0.6);
-}
+  <style>
+    :root {
+      --bg1: #070811;
+      --bg2: #2c0263;
+      --cyan: #22d3ee;
+      --purple: #7c3aed;
+      --shadow: rgba(124, 58, 237, 0.4);
+    }
 
-* { margin:0; padding:0; box-sizing:border-box; font-family:"Poppins", sans-serif; }
-body {
-  background: linear-gradient(135deg, var(--bg1), var(--bg2) 70%);
-  color: var(--cyan);
-  scroll-behavior: smooth;
-  line-height: 1.6;
-  overflow-x: hidden;
-  position: relative;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
 
-/* Fondo animado de neón */
-body::before {
-  content: "";
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: radial-gradient(circle at 30% 30%, #22d3ee, transparent 40%),
-              radial-gradient(circle at 70% 70%, #7c3aed, transparent 40%);
-  background-size: 200% 200%;
-  animation: glowBg 8s ease-in-out infinite alternate;
-  z-index: -1;
-}
+    body {
+      background: linear-gradient(135deg, var(--bg1), var(--bg2) 70%);
+      color: var(--cyan);
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
 
-@keyframes glowBg {
-  0% { background-position: 0% 0%, 100% 100%; }
-  50% { background-position: 100% 100%, 0% 0%; }
-  100% { background-position: 0% 0%, 100% 100%; }
-}
+    header {
+      background-color: rgba(7, 8, 17, 0.9);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
 
-header {
-  background-color: rgba(7,8,17,0.9);
-  padding:1.5rem 2rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-}
+    header h1 {
+      font-size: 1.7rem;
+      color: var(--purple);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
 
-header h1 { font-size:1.7rem; color: var(--purple); font-weight:600; letter-spacing:0.5px; }
-nav a { color:var(--cyan); margin-left:1.5rem; text-decoration:none; font-weight:600; transition:0.3s ease; }
-nav a:hover { color:var(--purple); transform: rotate(-3deg) scale(1.08); text-shadow:0 0 10px var(--purple); }
+    nav a {
+      color: var(--cyan);
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+    }
 
-section {
-  padding:4rem 2rem;
-  max-width:1000px;
-  margin:auto;
-  opacity:0;
-  transform: translateY(30px);
-  transition: all 1s ease;
-  border-radius:15px;
-  background: linear-gradient(135deg, rgba(7,8,17,0.85), rgba(44,2,99,0.85));
-}
+    nav a:hover {
+      color: var(--purple);
+      transform: rotate(-3deg) scale(1.08);
+      text-shadow: 0 0 10px var(--purple);
+    }
 
-section.visible { opacity:1; transform: translateY(0); }
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease;
+    }
 
-.hero { text-align:center; padding-top:5rem; }
-.hero img {
-  width:160px; height:160px; border-radius:50%; object-fit:cover; border:4px solid var(--purple); margin-bottom:1rem;
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-.hero img:hover { transform: scale(1.15) rotate(5deg); box-shadow:0 0 28px var(--purple); }
-.hero h2 { font-size:2.3rem; margin-bottom:0.7rem; color:var(--purple); transition:0.6s ease; }
-.hero p { font-size:1.15rem; opacity:0.9; }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.grid { margin-top:1.5rem; list-style:none; display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); }
+    .hero {
+      text-align: center;
+      padding-top: 5rem;
+    }
 
-.grid li {
-  background-color: rgba(7,8,17,0.85);
-  padding:1rem;
-  border-radius:15px;
-  text-align:center;
-  box-shadow:0 3px 12px rgba(0,0,0,0.5);
-  transition: transform 0.6s ease, box-shadow 0.6s ease, background 0.6s ease;
-  perspective:800px;
-  cursor:pointer;
-}
-.grid li:hover {
-  transform: rotateY(8deg) rotateX(3deg) translateY(-8px) scale(1.07);
-  box-shadow:0 12px 30px var(--shadow);
-  background: linear-gradient(135deg, rgba(7,8,17,0.95), rgba(44,2,99,0.95));
-}
+    .hero img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--purple);
+      margin-bottom: 1rem;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
 
-.grid a { color:var(--cyan); text-decoration:none; font-weight:bold; transition:0.3s ease, text-shadow 0.3s ease; display:inline-block; }
-.grid a:hover { color:var(--purple); transform: scale(1.1) rotate(5deg); text-shadow:0 0 10px var(--purple); }
+    .hero img:hover {
+      transform: scale(1.15) rotate(5deg);
+      box-shadow: 0 0 28px var(--purple);
+    }
 
-h2 {
-  font-size:2rem;
-  margin-bottom:1rem;
-  position:relative;
-  display:inline-block;
-  transition:0.7s ease;
-}
-h2::after {
-  content:'';
-  display:block;
-  width:0;
-  height:3px;
-  background: var(--purple);
-  transition: width 0.5s;
-  margin-top:4px;
-  border-radius:2px;
-}
-h2:hover::after { width:100%; }
+    .hero h2 {
+      font-size: 2.3rem;
+      margin-bottom: 0.7rem;
+      color: var(--purple);
+    }
 
-footer { text-align:center; padding:2rem; background-color:rgba(7,8,17,0.9); box-shadow:0 -4px 12px rgba(0,0,0,0.6); }
-footer p { opacity:0.85; }
+    .hero p {
+      font-size: 1.15rem;
+      opacity: 0.9;
+    }
 
-@media(max-width:768px){
-  header { flex-direction:column; gap:1rem; text-align:center; }
-  nav a { margin:0 0.7rem; }
-  .hero h2 { font-size:1.8rem; }
-}
-</style>
+    .grid {
+      margin-top: 1.5rem;
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .grid li {
+      background-color: rgba(7,8,17,0.85);
+      padding: 1rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.5);
+      transition: 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .grid li.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.6s ease;
+    }
+
+    .grid a {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+      display: inline-block;
+    }
+
+    .grid a:hover {
+      color: var(--purple);
+      transform: scale(1.1) rotate(5deg);
+      text-shadow: 0 0 10px var(--purple);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: rgba(7, 8, 17, 0.9);
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.6);
+    }
+
+    footer p {
+      opacity: 0.85;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      nav a {
+        margin: 0 0.7rem;
+      }
+
+      .hero h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>Juan Pablo Cateriano</h1>
-  <nav>
-    <a href="#sobre-mi">Sobre mí</a>
-    <a href="#gustos">Gustos</a>
-    <a href="#compañeros">Compañeros</a>
-    <a href="#profesores">Profesores</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
-</header>
+  <header>
+    <h1>Juan Pablo Cateriano</h1>
+    <nav>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#gustos">Gustos</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#compañeros">Compañeros</a>
+      <a href="#profesores">Profesores</a>
+    </nav>
+  </header>
 
-<section class="hero">
-  <img src="perfil.jpg" alt="Foto de Juan Pablo Cateriano">
-  <h2>¡Hola! Soy Juan Pablo 👋</h2>
-  <p>INTP | Programación, videojuegos indie, historias profundas y música 🎮🎵</p>
-</section>
+  <section class="hero">
+    <img src="perfil.jpg" alt="Foto de Juan Pablo Cateriano">
+    <h2>Soy Juan Pablo :P</h2>
+    <p>INTP | Programación, videojuegos indie, historias profundas y música 🎮🎵</p>
+  </section>
 
-<section id="sobre-mi">
-  <h2>Sobre mí</h2>
-  <p>Soy alguien curioso, reflexivo e imaginativo. Combino lo técnico con lo creativo: programación, diseño de videojuegos, narrativa y música. Me encantan los proyectos con alma y significado.</p>
-  <ul class="grid">
-    <li>Edad: 18 años</li>
-    <li>Formación académica: Estudiante de Ciencias de la Computación - Universidad Católica San Pablo</li>
-    <li>Ocupación: Estudiante</li>
-    <li>Ciudad: Arequipa, Perú</li>
-  </ul>
-</section>
+  <section id="sobre-mi">
+    <h2>Sobre mí</h2>
+    <p>
+      Soy alguien curioso, reflexivo e imaginativo. Combino lo técnico con lo creativo: programación, diseño de videojuegos, narrativa y música. 
+      Me encantan los proyectos con alma y significado.
+    </p>
+    <ul class="grid">
+      <li>Edad: 18 años</li>
+      <li>Formación académica: Estudiante de Ciencias de la Computación - Universidad Católica San Pablo</li>
+      <li>Ocupación: Estudiante</li>
+      <li>Ciudad: Arequipa, Perú</li>
+    </ul>
+  </section>
 
-<section id="gustos">
-  <h2>Mis gustos</h2>
-  <ul class="grid">
-    <li>🎮 Indies: Nine Sols, Hollow Knight, Hyper Light Drifter, Castlevania</li>
-    <li>🎵 Música: Jazz, J-pop (Ado, Natori, Yoasobi), OSTs</li>
-    <li>🧠 MBTI: INTP</li>
-    <li>💻 Programación, engines y diseño de juegos</li>
-    <li>📚 Historias profundas como Omori o Dentro del bosque</li>
-  </ul>
-</section>
+  <section id="gustos">
+    <h2>Mis gustos</h2>
+    <ul class="grid">
+      <li>🎮 Indies: Nine Sols, Hollow Knight, Hyper Light Drifter, Castlevania</li>
+      <li>🎵 Música: Jazz, J-pop (Ado, Natori, Yoasobi), OSTs</li>
+      <li>🧠 MBTI: INTP</li>
+      <li>💻 Programación, engines y diseño de juegos</li>
+      <li>📚 Historias profundas como Omori o Dentro del bosque</li>
+    </ul>
+  </section>
 
-<section id="compañeros">
-  <h2>Compañeros</h2>
-  <ul class="grid">
-    <li><a href="https://marializcadenashullicapacco.github.io/pagina-web/" target="_blank">Marialit Caderas Multiaparco</a><br><a href="https://www.linkedin.com/in/marializcadenashullicapacco/" target="_blank">LinkedIn</a></li>
-    <li><a href="https://traicypacocoolque.github.io/" target="_blank">Tracy Pároz Colaga</a><br><a href="https://www.linkedin.com/in/traicy-pacco-colque-01469b386/" target="_blank">LinkedIn</a></li>
-    <li><a href="https://svr-glitch.github.io/SANTIAGO-VELASCO-RIVERA/" target="_blank">Santiago Jánchez Rivera</a><br><a href="https://www.linkedin.com/in/santiago-velasco-rivera/" target="_blank">LinkedIn</a></li>
-    <!-- Agrega los demás compañeros siguiendo el mismo formato -->
-  </ul>
-</section>
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <ul class="grid">
+      <li><a href="https://github.com/Juan-Pablo-Cateriano-Justo" target="_blank">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/juan-pablo-cateriano-justo-987b64385" target="_blank">LinkedIn</a></li>
+      <li><a href="mailto:juanpablocateriano@gmail.com">Correo</a></li>
+    </ul>
+  </section>
 
-<section id="profesores">
-  <h2>Profesores</h2>
-  <ul class="grid">
-    <li><strong>Jorge Lovón Caparó</strong> – jlovonc@ucsp.edu.pe</li>
-    <li><strong>Erick Mauricio Gómez Nieto</strong> – emgomez@ucsp.edu.pe</li>
-    <li><strong>Kelly Vizconde La Motta</strong> – kvizconde@ucsp.edu.pe</li>
-    <li><strong>Rosmery Violeta Quispe Zavala</strong> – rvquispe@ucsp.edu.pe</li>
-    <li><strong>Pierina Pacheco Leyton</strong> – ppacheco@ucsp.edu.pe</li>
-    <li><strong>Ernesto Cuadros Vargas</strong> – ecuadros@ucsp.edu.pe</li>
-    <li><strong>Yanet Silvana Chirinos Avilés</strong> – ychirinos@ucsp.edu.pe</li>
-  </ul>
-</section>
+  <section id="compañeros">
+    <h2>Compañeros</h2>
+    <ul class="grid" id="companeros-list">
+      <li><a href="https://marializcadenashullicapacco.github.io/pagina-web/" target="_blank">Marialit Caderas Multiaparco</a><br><a href="https://www.linkedin.com/in/marializcadenashullicapacco/" target="_blank">LinkedIn</a></li>
+      <li><a href="https://traicypacocoolque.github.io/" target="_blank">Tracy Pároz Colaga</a><br><a href="https://www.linkedin.com/in/traicy-pacco-colque-01469b386/" target="_blank">LinkedIn</a></li>
+      <li><a href="https://svr-glitch.github.io/SANTIAGO-VELASCO-RIVERA/" target="_blank">Santiago Jánchez Rivera</a><br><a href="https://www.linkedin.com/in/santiago-velasco-rivera/" target="_blank">LinkedIn</a></li>
+      <li><a href="https://chaskacandia.github.io/chaskacandiaochoa.github.io/" target="_blank">Chasta Carola Ochoa</a><br><a href="https://www.linkedin.com/in/chaska-candia-ochoa-277079386/" target="_blank">LinkedIn</a></li>
+      <li><a href="https://deza-ccama.github.io/marilyn-shiomara-deza-ccama/" target="_blank">Marilyn Sivonara Dora Canna</a><br><a href="https://www.linkedin.com/in/marilyn-shiomara-deza-ccama-b7a191335?utm_source=share&utm_campaign=share_via&utm_content=profile" target="_blank">LinkedIn</a></li>
+      <li><a href="https://angelabecerra-jpg.github.io/pagina-web/" target="_blank">Angela Becerra Amado</a><br><a href="https://www.linkedin.com/in/angela-becerra-Ob6ab6345/" target="_blank">LinkedIn</a></li>
+      <li><a href="https://gustavorodriguezrodriguez.github.io/pagina-web/" target="_blank">Guardo Rodrigues Rodriguez</a></li>
+      <li><a href="https://hectorrodriguez17.github.io/mywebhr/" target="_blank">Héctor Ricardo Rodríguez García</a><br><a href="https://www.linkedin.com/in/hector-ricardo-rodriguez-gaytan-76639437b?utm_source=share_via&utm_content=profile&utm_medium" target="_blank">LinkedIn</a></li>
+      <li><a href="https://greciamunoz-sys.github.io/Grecia-Arianne-Consuelo-Munoz-Ventur" target="_blank">Grecia Consuelo Muñoz</a></li>
+      <li><a href="https://katerineangelahuaycaniturpo.github.io/pagina-web/" target="_blank">Katrina Fraga Huancura Turno</a></li>
+      <li><a href="https://juanquispepandia-code.github.io/" target="_blank">Juan Daniel López-Paneta</a></li>
+      <li><a href="https://cesarluisgonzalesmeneses.github.io/paginaweb/" target="_blank">Coas-Lí del González Menezes</a></li>
+      <li><a href="https://santiagovaldiviezo10.github.io/santiagovaldiviezo" target="_blank">Tomi Santiago Valdivisco Guardia</a><br><a href="https://pe.linkedin.com/in/santiago-valdiviezo-1a4baa380" target="_blank">LinkedIn</a></li>
+      <li><a href="https://valeriegallardo.github.io/valeriegallardo/" target="_blank">Valerio Gallardo</a></li>
+      <li><a href="https://rodrigomolinap.github.io/RodrigoMolinaP-web/" target="_blank">Rodrigo Molina Portocarrero</a></li>
+      <li><a href="https://owenvh.github.io" target="_blank">Diogo Kurt Vidarani Checco</a><br><a href="https://www.linkedin.com/in/owen-kurt-vlicarani-checca" target="_blank">LinkedIn</a></li>
+      <li><a href="https://pari-dot.github.io/Mauricio.github.io/" target="_blank">Mauricio Joel Pati Gomez</a><br><a href="https://www.linkedin.com/in/mauricio-joe-parl-gomez-5b234a380/" target="_blank">LinkedIn</a></li>
+      <li><a href="https://roaldmacedoboza.github.io/roaldmacedo.github.io" target="_blank">Macedo Rena Roald</a><br><a href="https://www.linkedin.com/in/roald-macedo-boza-a466a4385" target="_blank">LinkedIn</a></li>
+      <li><a href="https://flavianicaeladiazzevallos1.github.io/" target="_blank">Flávia Wissada Dica Zavalios</a><br><a href="https://www.linkedin.com/in/flavia-micaela-d%C3%ADaz-zevallos" target="_blank">LinkedIn</a></li>
+      <li><a href="https://jorgecastro-sudo.github.io/Jorge-David-castro-quispe-/" target="_blank">Jorge David Castro Quique</a></li>
+      <li><a href="https://josecalizaya-cmyk.github.io/joseluiscalizayachura.github.io/" target="_blank">Leandro Carlos Valdivis Rosa</a><br><a href="https://www.linkedin.com/in/jose-luis-aldair-calizaya-chura-90a23b392/" target="_blank">LinkedIn</a></li>
+      <li><a href="https://leaovaldiviarivas.github.io/leandro-carlos-valdivia-rivas/" target="_blank">Afrika Emily Valencia Pinho</a><br><a href="https://www.linkedin.com/in/ariana-emily-valencia-pati%C3%B1o-ba0135387/" target="_blank">LinkedIn</a></li>
+      <li><a href="https://cielogrp.github.io/Cielo-Geraldine-Romero-Pe-a/" target="_blank">Solen Goldmannani Haumanzhulu</a><br><a href="www.linkedin.com/in/cielo-geraldine-89a196387" target="_blank">LinkedIn</a></li>
+      <li><a href="https://selenaccallomamani.github.io/selena.ccallomamani.github.io/" target="_blank">Selena Goldmannani Haumanzhulu</a><br><a href="https://www.linkedin.com/in/selena-ccallomamani-huaman%C3%B1ahui-6b0364311" target="_blank">LinkedIn</a></li>
+    </ul>
+  </section>
 
-<section id="contacto">
-  <h2>Contacto</h2>
-  <ul class="grid">
-    <li><a href="https://github.com/Juan-Pablo-Cateriano-Justo" target="_blank">GitHub</a></li>
-    <li><a href="https://www.linkedin.com/in/juan-pablo-cateriano-justo-987b64385" target="_blank">LinkedIn</a></li>
-    <li><a href="mailto:juanpablocateriano@gmail.com">Correo</a></li>
-  </ul>
-</section>
+  <section id="profesores">
+    <h2>Profesores</h2>
+    <ul class="grid" id="profesores-list">
+      <li>Jorge Lovón Caparó — jlovonc@ucsp.edu.pe</li>
+      <li>Erick Mauricio Gómez Nieto — emgomez@ucsp.edu.pe</li>
+      <li>Kelly Vizconde La Motta — kvizconde@ucsp.edu.pe</li>
+      <li>Rosmery Violeta Quispe Zavala — rvquispe@ucsp.edu.pe</li>
+      <li>Pierina Pacheco Leyton — ppacheco@ucsp.edu.pe</li>
+      <li>Ernesto Cuadros Vargas — ecuadros@ucsp.edu.pe</li>
+      <li>Yanet Silvana Chirinos Avilés — ychirinos@ucsp.edu.pe</li>
+    </ul>
+  </section>
 
-<footer>
-  <p>© 2025 Juan Pablo Cateriano — “Si lo puedes imaginar, lo puedes programar.”</p>
-</footer>
+  <footer>
+    <p>© 2025 Juan Pablo Cateriano — “Si lo puedes imaginar, lo puedes programar.”</p>
+  </footer>
 
-<script>
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) entry.target.classList.add("visible");
-  });
-},{threshold:0.22});
-document.querySelectorAll("section").forEach(s=>observer.observe(s));
+  <script>
+    // Animación de aparición al hacer scroll para secciones
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.22 });
 
-const titles = document.querySelectorAll("h2");
-window.addEventListener("scroll",()=>{
-  titles.forEach(t=>{
-    const rect = t.getBoundingClientRect();
-    if(rect.top<window.innerHeight && rect.bottom>=0) t.style.textShadow="0 0 12px var(--glow)";
-    else t.style.textShadow="none";
-  });
-});
+    document.querySelectorAll("section").forEach(s => observer.observe(s));
 
-document.querySelectorAll(".grid li").forEach(li=>{
-  li.addEventListener("mousemove", e=>{
-    const rect = li.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const midX = rect.width/2;
-    const midY = rect.height/2;
-    const rotY = ((x-midX)/midX)*10;
-    const rotX = ((midY-y)/midY)*6;
-    li.style.transform=`rotateY(${rotY}deg) rotateX(${rotX}deg) scale(1.08)`;
-    li.style.boxShadow=`0 12px 28px rgba(124,58,237,0.6)`;
-  });
-  li.addEventListener("mouseleave",()=>{
-    li.style.transform="rotateY(0deg) rotateX(0deg) scale(1)";
-    li.style.boxShadow="0 3px 12px rgba(0,0,0,0.5)";
-  });
-});
-</script>
+    // Animación fade-in con delay para lista de compañeros y profesores
+    function animateList(selector) {
+      const items = document.querySelectorAll(selector);
+      items.forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add("visible");
+        }, index * 100); // 100ms de delay entre cada uno
+      });
+    }
+
+    const companionsObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          animateList("#companeros-list li");
+          companionsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    companionsObserver.observe(document.querySelector("#companeros-list"));
+
+    const profsObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          animateList("#profesores-list li");
+          profsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    profsObserver.observe(document.querySelector("#profesores-list"));
+  </script>
 </body>
 </html>
